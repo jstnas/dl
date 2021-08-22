@@ -11,7 +11,8 @@ class DL:
     def __init__(self, query: str):
         # Get results from the query.
         encoded_query = quote(query)
-        soup = self._get_soup(self._search_url + encoded_query)
+        full_url = self._search_url + encoded_query
+        soup = self._get_soup(full_url)
         results = self._get_results(soup)
         result = self._pick_result(results)
         self._folder_name = result[0]

@@ -15,4 +15,7 @@ if __name__ == '__main__':
     elif args.site == 'kissmanga':
         from kissmanga import kissmangaDL
         kissmangadl = kissmangaDL(args.query)
+    elif args.site == 'igggames':
+        from igggames import igggamesDL
+        igggamesdl = igggamesDL(args.query)
 
