@@ -24,8 +24,7 @@ class kissmangaDL(DL):
         for c in range(chapter_count):
             print(f'Downloading chapter {c + 1}/{chapter_count}')
             index = str(c).zfill(zfill_length)
-            prefix = f'{index}_'
-            self._download_chapter(prefix, chapters[c])
+            self._download_chapter(index, chapters[c])
         return
 
     def _get_chapters(self, link: str) -> list:
@@ -44,17 +43,8 @@ class kissmangaDL(DL):
         zfill_length = len(str(image_count))
         for i in range(image_count):
             self._display_progress('Downloading image', i, image_count)
-            request = requests.get(images[i]['src'])
-            request.raise_for_status()
-            # Folder path.
-            path = f'kissmanga/{self._folder_name}/{prefix}{chapter[0]}'
-            # Prepare folder.
-            if not os.path.exists(path):
-                os.makedirs(path)
-            # Save path.
             name = str(i).zfill(zfill_length)
-            full_path = path+f'/{name}.jpg'
-            with open(full_path, 'wb') as image_file:
-                image_file.write(request.content)
+            rel_path = f'kissmanga/{self._folder_name}/{prefix}_{chapter[0]}/{name}.jpg'
+            self._download_file(images[i]['src'], rel_path)
         print()
         return

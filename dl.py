@@ -1,3 +1,4 @@
+import os
 import requests
 from urllib.parse import quote
 from bs4 import BeautifulSoup
@@ -66,3 +67,16 @@ class DL:
         # Replace whitespace with underline.
         name = '_'.join(name.split())
         return name
+
+    def _download_file(self, link: str, rel_path: str):
+        request = requests.get(link)
+        request.raise_for_status()
+        # Create folder.
+        full_path = os.path.abspath(rel_path)
+        folder = os.path.dirname(full_path)
+        if not os.path.exists(folder):
+            os.makedirs(folder)
+        # Save file to folder.
+        with open(full_path, 'wb') as dl_file:
+            dl_file.write(request.content)
+        return
