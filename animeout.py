@@ -30,6 +30,6 @@ class animeoutDL(DL):
         zfill_length = len(str(episode_count))
         for e in range(episode_count):
             self._display_progress('Downloading episode', e, episode_count)
-            rel_path = f'animeout/{result[0]}/{links[e][1]}.mkv'
+            rel_path = f'{result[0]}/{links[e][1]}.mkv'
             self._download_file(links[e][0], rel_path)
         return

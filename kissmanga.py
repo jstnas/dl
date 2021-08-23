@@ -44,7 +44,7 @@ class kissmangaDL(DL):
         for i in range(image_count):
             self._display_progress('Downloading image', i, image_count)
             name = str(i).zfill(zfill_length)
-            rel_path = f'kissmanga/{self._folder_name}/{prefix}_{chapter[0]}/{name}.jpg'
+            rel_path = f'{self._folder_name}/{prefix}_{chapter[0]}/{name}.jpg'
             self._download_file(images[i]['src'], rel_path)
         print()
         return

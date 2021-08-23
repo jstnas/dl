@@ -72,7 +72,7 @@ class DL:
         request = requests.get(link)
         request.raise_for_status()
         # Create folder.
-        full_path = os.path.abspath(rel_path)
+        full_path = os.path.abspath(f'{self._site}/{rel_path}')
         folder = os.path.dirname(full_path)
         if not os.path.exists(folder):
             os.makedirs(folder)
